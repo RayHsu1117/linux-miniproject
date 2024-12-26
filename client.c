@@ -12,7 +12,14 @@ int main() {
     int sock = 0;
     struct sockaddr_in server_address;
     char buffer[BUFFER_SIZE];
+    FILE *output_file;
 
+    // 打開輸出文件
+    output_file = fopen("out", "w");
+    if (output_file == NULL) {
+        perror("Failed to open output file");
+        return -1;
+    }
     // 創建 socket
     if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         perror("Socket creation error");
@@ -67,6 +74,7 @@ int main() {
         }
 
         printf("Server response: %s", buffer);
+        fprintf(output_file, "%s", buffer);
     }
 
     // 關閉 socket
