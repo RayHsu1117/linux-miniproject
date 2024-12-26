@@ -29,8 +29,40 @@ void handle_client(int client_socket) {
             snprintf(buffer, BUFFER_SIZE, "Server shutting down\n");
             write(client_socket, buffer, strlen(buffer));
             break;
-        } else {
-            snprintf(buffer, BUFFER_SIZE, "Invalid command\n");
+        } else if{
+            strcmp(buffer, "abs") == 0) {
+            int a;
+            sscanf(buffer + 4, "%d", &a);   
+            int result = abs(a);
+            snprintf(buffer, BUFFER_SIZE, "%d\n", result);
+            write(client_socket, buffer, strlen(buffer));
+        } 
+        // else if{
+        //     strcmp(buffer, "sub") == 0) {
+        //     int a, b;
+        //     sscanf(buffer + 4, "%d %d", &a, &b);   
+        //     int result = a - b;
+        //     snprintf(buffer, BUFFER_SIZE, "%d\n", result);
+        //     write(client_socket, buffer, strlen(buffer));
+        // } 
+        else if{
+            strcmp(buffer, "mul") == 0) {
+            int a, b;
+            sscanf(buffer + 4, "%d %d", &a, &b);   
+            int result = a * b;
+            snprintf(buffer, BUFFER_SIZE, "%d\n", result);
+            write(client_socket, buffer, strlen(buffer));
+          } 
+        //   else if{
+        //     strcmp(buffer, "div") == 0) {
+        //     int a, b;
+        //     sscanf(buffer + 4, "%d %d", &a, &b);   
+        //     int result = a / b;
+        //     snprintf(buffer, BUFFER_SIZE, "%d\n", result);
+        //     write(client_socket, buffer, strlen(buffer));
+        // }
+        else {
+            snprintf(buffer, BUFFER_SIZE, "Hello\n");
             write(client_socket, buffer, strlen(buffer));
         }
     }
