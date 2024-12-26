@@ -29,8 +29,9 @@ void handle_client(int client_socket) {
             snprintf(buffer, BUFFER_SIZE, "Server shutting down\n");
             write(client_socket, buffer, strlen(buffer));
             break;
-        } else if{
-            strcmp(buffer, "abs") == 0) {
+        } 
+        else if
+            (strcmp(buffer, "abs") == 0) {
             int a;
             sscanf(buffer + 4, "%d", &a);   
             int result = abs(a);
@@ -45,8 +46,8 @@ void handle_client(int client_socket) {
         //     snprintf(buffer, BUFFER_SIZE, "%d\n", result);
         //     write(client_socket, buffer, strlen(buffer));
         // } 
-        else if{
-            strcmp(buffer, "mul") == 0) {
+        else if
+            (strcmp(buffer, "mul") == 0) {
             int a, b;
             sscanf(buffer + 4, "%d %d", &a, &b);   
             int result = a * b;
