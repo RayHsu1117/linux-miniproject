@@ -49,7 +49,7 @@ int main() {
         memset(buffer, 0, BUFFER_SIZE);
 
         // 從 stdin 讀取輸入
-        printf("Enter command: ");
+        // printf("Enter command: ");
         if (fgets(buffer, BUFFER_SIZE, stdin) == NULL) {
             break;
         }
@@ -62,7 +62,7 @@ int main() {
 
         // 處理 "kill" 指令，結束程序
         if (strncmp(buffer, "kill", 4) == 0) {
-            printf("Server terminated, exiting client.\n");
+            // printf("Server terminated, exiting client.\n");
             break;
         }
 
@@ -73,7 +73,7 @@ int main() {
             break;
         }
 
-        printf("Server response: %s", buffer);
+        // printf("Server response: %s", buffer);
         fprintf(output_file, "%s", buffer);
     }
 
