@@ -17,54 +17,36 @@ void handle_client(int client_socket) {
         }
 
         printf("Received: %s", buffer);
-
+        ssize_t bytes_written = 0;
         // 處理指令
         if (strncmp(buffer, "add", 3) == 0) {
             int a, b;
             sscanf(buffer + 4, "%d %d", &a, &b);
             int result = a + b;
             snprintf(buffer, BUFFER_SIZE, "%d\n", result);
-            write(client_socket, buffer, strlen(buffer));
+            bytes_written = write(client_socket, buffer, strlen(buffer));
         } else if (strncmp(buffer, "kill", 4) == 0) {
             snprintf(buffer, BUFFER_SIZE, "Server shutting down\n");
-            write(client_socket, buffer, strlen(buffer));
+            bytes_written = write(client_socket, buffer, strlen(buffer));
             break;
         } 
-        else if
-            (strcmp(buffer, "abs") == 0) {
+        else if(strncmp(buffer, "abs", 3) == 0) {
             int a;
             sscanf(buffer + 4, "%d", &a);   
             int result = abs(a);
             snprintf(buffer, BUFFER_SIZE, "%d\n", result);
-            write(client_socket, buffer, strlen(buffer));
+            bytes_written = write(client_socket, buffer, strlen(buffer));
         } 
-        // else if{
-        //     strcmp(buffer, "sub") == 0) {
-        //     int a, b;
-        //     sscanf(buffer + 4, "%d %d", &a, &b);   
-        //     int result = a - b;
-        //     snprintf(buffer, BUFFER_SIZE, "%d\n", result);
-        //     write(client_socket, buffer, strlen(buffer));
-        // } 
-        else if
-            (strcmp(buffer, "mul") == 0) {
+        else if(strncmp(buffer, "mul", 3) == 0) {
             int a, b;
             sscanf(buffer + 4, "%d %d", &a, &b);   
             int result = a * b;
             snprintf(buffer, BUFFER_SIZE, "%d\n", result);
-            write(client_socket, buffer, strlen(buffer));
-          } 
-        //   else if{
-        //     strcmp(buffer, "div") == 0) {
-        //     int a, b;
-        //     sscanf(buffer + 4, "%d %d", &a, &b);   
-        //     int result = a / b;
-        //     snprintf(buffer, BUFFER_SIZE, "%d\n", result);
-        //     write(client_socket, buffer, strlen(buffer));
-        // }
+            bytes_written = write(client_socket, buffer, strlen(buffer));
+        } 
         else {
             snprintf(buffer, BUFFER_SIZE, "Hello\n");
-            write(client_socket, buffer, strlen(buffer));
+            bytes_written = write(client_socket, buffer, strlen(buffer));
         }
     }
 
