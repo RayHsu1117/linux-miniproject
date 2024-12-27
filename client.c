@@ -42,7 +42,7 @@ int main() {
         return -1;
     }
 
-    printf("Connected to server at %s:%d\n", SERVER_IP, SERVER_PORT);
+    //printf("Connected to server at %s:%d\n", SERVER_IP, SERVER_PORT);
 
     // 主循環：讀取輸入，發送指令並接收回應
     while (1) {
@@ -74,7 +74,8 @@ int main() {
         }
 
         // printf("Server response: %s", buffer);
-        fprintf(output_file, "%s", buffer);
+        //printf("%s",buffer);
+	fprintf(output_file, "%s", buffer);
     }
 
     // 關閉 socket
